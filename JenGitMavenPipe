@@ -1,0 +1,47 @@
+node('built-in')
+{
+    // some block
+  stage('CodeClone') 
+      {
+        // some block
+      //git 'https://github.com/kumar-ks/example-voting-app.git'
+     // git 'https://github.com/aptel77/example-voting-app'
+      git credentialsId: 'JenkinsGit', url: 'https://github.com/aptel77/simple-java-maven-app.git'
+           sh 'echo hello world'
+        }
+
+  stage('CodeCompile') {
+    // some block
+    sh 'cd /var/lib/jenkins/workspace/JenGitMavenPipe'
+    sh 'mvn clean'
+       sh 'echo Code Compile'}
+ stage('CodeReview') {
+    // some block
+       sh 'echo hello world - Review '
+}
+ stage('CodeUnitTest') {
+    // some block
+       sh 'echo hello world - Unit Test'
+}
+ stage('CodeBuild') {
+    // some block
+        sh 'ls -ltr'
+        sh 'cd /var/lib/jenkins/workspace/JenGitMavenPipe'
+        
+        sh 'mvn install'
+        sh 'ls -ltr'  
+       sh 'echo hello world'
+}
+ stage('CodeDeploy') {
+    // some block
+       sh 'echo hello world'
+}
+stage('QAtesting') {
+    // some block
+       sh 'echo hello world'
+        sh 'cd /var/lib/jenkins/workspace/JenGitMavenPipe/target/'
+        sh 'java -jar /var/lib/jenkins/workspace/JenGitMavenPipe/target/my-app-1.0-SNAPSHOT.jar'
+       
+}
+
+}
